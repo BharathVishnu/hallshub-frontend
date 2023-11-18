@@ -41,11 +41,11 @@ To get started with the project, follow these steps:
 3. Run the application.
    ```bash
     npm run dev
-   # or
+   #or
    yarn dev
-   # or
+   #or
    pnpm dev
-   # or
+   #or
    bun dev
     ```
 
