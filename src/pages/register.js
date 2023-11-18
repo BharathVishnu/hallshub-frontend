@@ -3,7 +3,7 @@ import React from 'react';
 
 const Register = () => {
   return (
-    <div className="flex relative items-center justify-center mt-72 md:mt-96">
+    <div className="flex relative items-center justify-center mt-80 md:mt-96">
       <div className="absolute right-0 bg-[#3D51BE] rounded-l-3xl px-6 py-12 md:px-96 shadow-md w-full md:w-[1321px] flex flex-col gap-2">
         {/* Username Input */}
         <div className="mb-4">
