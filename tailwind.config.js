@@ -7,12 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      linearGradientColors: {
+        'mainbg': ['#5268DA', '#495CC3'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-font-inter')(),
+  ],
 }
