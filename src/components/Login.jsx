@@ -32,7 +32,7 @@ const LoginForm = () => {
         </div>
 
         {/* Login Button */}
-        <Link href="/booking" className="mt-5 md:ml-64 mx-auto md:w-[272px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+        <Link href="/book" className="mt-5 md:ml-64 mx-auto md:w-[272px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
           Login
         </Link>
 
