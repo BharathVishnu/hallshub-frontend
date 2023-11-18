@@ -1,5 +1,4 @@
-// components/LoginForm.js
-
+import Link from 'next/link';
 import React from 'react';
 
 const LoginForm = () => {
@@ -40,9 +39,9 @@ const LoginForm = () => {
         {/* Register Link */}
         <div className='mt-2 text-sm md:text-md ml-10 md:ml-72'>
           Don't have an account?
-          <span className='text-black hover:text-white ml-1'>
-            Register
-          </span>
+          <Link href="/register" className='text-black hover:text-white ml-1'>
+                Register
+        </Link>
         </div>
       </div>
     </div>
