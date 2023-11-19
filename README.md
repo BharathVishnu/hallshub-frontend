@@ -1,40 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# College Hall/Class Booking System
+
+## Introduction
+
+This project is a College Hall/Class Booking System designed to streamline the process of scheduling events in college halls and classes. Users can easily create events, inputting details such as event name, description, date, and venue.
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+4. [Usage](#usage)
+5. [External Interfaces](#external-interfaces)
+6. [Non-functional Requirements](#non-functional-requirements)
+7. [Other Requirements](#other-requirements)
+8. [Contributing](#contributing)
+9. [License](#license)
+
+## Overview
+
+### Purpose of the Project
+
+The purpose of this project is to provide a user-friendly system for booking college halls and classes, simplifying the event scheduling process for college staff and club heads.
+
+### Scope of the System
+
+The system allows users to input event details and dynamically select venues based on the chosen date.
+
+## Features
+
+- **Event Creation:**
+  - Users can input event details, including name, description, date, and venue.
+  - Dynamic venue selection dropdown based on the selected date.
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository.
+2. Install dependencies.
+3. Run the application.
+   ```bash
+    npm run dev
+      or
+    yarn dev
+      or
+    pnpm dev
+      or
+    bun dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Describe how users can use your system. Include examples and screenshots if possible.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## External Interfaces
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### User Interfaces
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Event Creation Interface:
+  - Input fields for event name and details.
+  - Date picker for selecting the event date.
+  - Dropdown list for venue selection (dynamically updated based on the selected date).
 
-## Learn More
+## Non-functional Requirements
 
-To learn more about Next.js, take a look at the following resources:
+- **Performance Requirements:**
+  - Venue selection process must be responsive, updating the dropdown list promptly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Security Requirements:**
+  - User input, especially personal details, must be securely stored and handled.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Other Requirements
 
-## Deploy on Vercel
+### Database Requirements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The database must maintain real-time availability status for each venue on different dates.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+If you want to contribute to this project, follow the [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
