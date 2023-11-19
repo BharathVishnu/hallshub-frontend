@@ -1,8 +1,8 @@
 import React from 'react';
 
-const RoundedCard = () => {
+const Card = () => {
   return (
-    <div className="text-white hover:text-black border-2 border-white hover:border-black relative overflow-hidden rounded-lg p-6 shadow-2xl transition duration-300 ease-in-out hover:opacity-100 transform hover:scale-105 hover:bg-white">
+    <div className=" card text-white hover:text-black border-2 border-white hover:border-black relative overflow-hidden rounded-lg p-6 shadow-2xl transition duration-300 ease-in-out hover:opacity-100 transform hover:scale-105 hover:bg-white">
       <h2 className="text-2xl font-bold ">Cloud Study Jam</h2>
       <h3 className="text-2xl font-semibold mb-4">GDSC</h3>
       <h4 className="text-2xl font-bold mb-2">APJ HALL</h4>
@@ -15,4 +15,4 @@ const RoundedCard = () => {
   );
 };
 
-export default RoundedCard;
+export default Card;
