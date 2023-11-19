@@ -23,7 +23,10 @@ export default function Home() {
       {loading ? (
         <Loading />
       ) : (
-        <Login/>
+        <div>
+                 <Login/>
+        </div>
+ 
       )} 
     </main>
   )
