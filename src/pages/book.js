@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Link from 'next/link';
+import Sidebar from "@/components/Sidebar";
 
 export default function Booking() {
   return (
     <main>  
+        <Sidebar/>
         <Navbar/>
         <div className="relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2">
           {/* Event */}
@@ -14,7 +16,7 @@ export default function Booking() {
             <input
               type="text"
               id="eventname"
-              className="mt-1 p-2 w-full md:w-[900px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
 
@@ -26,7 +28,7 @@ export default function Booking() {
             <input
               type="text"
               id="category"
-              className="mt-1 p-2 w-full md:w-[900px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
 
@@ -38,7 +40,7 @@ export default function Booking() {
             <input
               type="text"
               id="attendees"
-              className="mt-1 p-2 w-full md:w-[900px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
           
@@ -49,9 +51,9 @@ export default function Booking() {
                 from
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 id="from"
-                className="mt-1 p-2 w-full md:w-[350px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-2 w-full md:w-[350px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>
             {/* To */}
@@ -60,9 +62,9 @@ export default function Booking() {
                 to
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 id="password"
-                className="mt-1 p-2 w-full md:w-[350px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-2 w-full md:w-[350px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>
           </div>
@@ -75,7 +77,7 @@ export default function Booking() {
               </label>
               <select
                 id="venue"
-                className="mt-1 p-2 w-full md:w-[900px] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               >
                 <option value="venue1">APJ Hall</option>
                 <option value="venue2">PTA Hall</option>
@@ -89,17 +91,10 @@ export default function Booking() {
               </select>
             </div>
 
-
-
-
-
           {/* Book Button */}
-          <Link href="/" className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+          <Link href="/" className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
             Book
           </Link>
-          {/* <Link href="/" className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
-            Logout
-          </Link> */}
     </div>
     </main>
   )

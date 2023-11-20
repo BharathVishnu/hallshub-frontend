@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.6",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "styled-components": "^6.1.1",
     "tailwindcss-font-inter": "^3.0.1"
   },
   "devDependencies": {

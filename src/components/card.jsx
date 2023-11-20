@@ -9,7 +9,7 @@ const Card = () => {
       <div className="border-b-4 rounded-xl border-gray-300 mb-4"></div>
       <div className='flex flex-row justify-between'>
         <div className='font-bold'>20 Nov 2023</div>
-        <div className='font-bold'>5 p.m</div>
+        <div className='font-bold'>5.00</div>
       </div>
     </div>
   );

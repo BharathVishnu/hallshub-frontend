@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
 import Card from '../components/card';
+import Sidebar from '@/components/Sidebar';
 // import eventlist from '../components/eventlist';
 
 export default function Booking() {
@@ -24,6 +25,7 @@ export default function Booking() {
   }, []);
   return (
     <main>  
+        <Sidebar/>
         <Navbar/>
         {loading ? (
         <Loading />
