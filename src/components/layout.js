@@ -3,7 +3,7 @@ import Head from "next/head";
 import localFont from 'next/font/local';
 
 const myFont = localFont({
-    src: '../../public/fonts/Montserrat-Italic-VariableFont_wght.ttf',
+    src: '../../public/fonts/Montserrat-Regular.ttf',
     variable: '--font-mont'
   });
 

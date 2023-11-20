@@ -10,6 +10,9 @@ module.exports = {
       linearGradientColors: {
         'mainbg': ['#5268DA', '#495CC3'],
       },
+      fontFamily: {
+        mont : ['var(--font-mont)'],
+      },
     },
   },
   plugins: [

@@ -7,6 +7,8 @@ import Link from 'next/link';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import Person2Icon from '@mui/icons-material/Person2';
 
 export default function Sidebar() {
     const [open, setOpen] = useState(false);
@@ -38,20 +40,22 @@ export default function Sidebar() {
                 </IconButton>
             </div>
             <List className="mt-10 flex flex-col justify-center items-center gap-10 px-10 ">
-                <Link href="/" onClick={closeDrawer} >
-                <ListItemText
-                    primary={
-                    <Typography variant="body1" style={{ fontSize: '28px' }}>
-                        Profile
-                    </Typography>
-                    }
-                    className='text-white hover:text-[#2F3349]'
-                />
+                <Link href="/" onClick={closeDrawer} className='mr-24 flex flex-row justify-between items-center gap-5 '>
+                    <Person2Icon className='text-4xl text-white hover:text-[#2F3349]'/>
+                    <ListItemText
+                        primary={
+                        <Typography variant="body1" style={{ fontSize: '28px',fontFamily:'var(--font-mont)'}}>
+                            Profile
+                        </Typography>
+                        }
+                        className='text-white hover:text-[#2F3349]'
+                    />
                 </Link>
-                <Link href="/" onClick={closeDrawer}>
+                <Link href="/" onClick={closeDrawer} className='mr-20 flex flex-row justify-between items-center gap-8'> 
+                <ExitToAppIcon className='text-white text-4xl hover:text-[#2F3349]'/>
                 <ListItemText
                     primary={
-                    <Typography variant="body1" style={{ fontSize: '28px' }}>
+                    <Typography variant="body1" style={{ fontSize: '28px' , fontFamily:'var(--font-mont)'}}>
                        Logout
                     </Typography>
                     }

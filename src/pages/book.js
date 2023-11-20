@@ -7,7 +7,7 @@ export default function Booking() {
     <main>  
         <Sidebar/>
         <Navbar/>
-        <div className="relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2">
+        <div className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2">
           {/* Event */}
           <div className="ml-5 mb-4">
             <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
@@ -77,7 +77,7 @@ export default function Booking() {
               </label>
               <select
                 id="venue"
-                className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-3 w-full md:w-[900px] opacity-[60%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               >
                 <option value="venue1">APJ Hall</option>
                 <option value="venue2">PTA Hall</option>

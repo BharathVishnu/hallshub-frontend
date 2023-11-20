@@ -8,7 +8,7 @@ const LoginForm = () => {
   };
   return (
     <div className="flex relative items-center justify-center mt-72 md:mt-80">
-      <div className="absolute right-0  rounded-l-3xl px-8 py-24 mt-8 md:px-72 shadow-2xl w-full md:w-[1321px] flex flex-col gap-2" style={gradientStyle}>
+      <div className="font-mont absolute right-0  rounded-l-3xl px-8 py-24 mt-8 md:px-72 shadow-2xl w-full md:w-[1321px] flex flex-col gap-2" style={gradientStyle}>
         {/* Username Input */}
         <div className="mb-4">
           <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
@@ -41,7 +41,7 @@ const LoginForm = () => {
         </Link>
 
         {/* Register Link */}
-        <div className='mt-2 text-sm md:text-md ml-10 md:ml-72'>
+        <div className='mt-2 text-sm md:text-md ml-10 md:ml-64'>
           Don't have an account?
           <Link href="/register" className='text-black hover:text-white ml-1'>
                 Register
