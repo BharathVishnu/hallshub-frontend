@@ -5,7 +5,7 @@ export default function Booking() {
   return (
     <main>  
         <Navbar/>
-        <div className="rounded-l-3xl w-full md:w-[1321px] flex flex-col justify-center mx-auto mt-20 gap-2">
+        <div className="relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2">
           {/* Event */}
           <div className="ml-5 mb-4">
             <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
@@ -94,9 +94,12 @@ export default function Booking() {
 
 
           {/* Book Button */}
-          <Link href="/" className="mt-5 ml-5 md:w-[172px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+          <Link href="/" className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
             Book
           </Link>
+          {/* <Link href="/" className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+            Logout
+          </Link> */}
     </div>
     </main>
   )

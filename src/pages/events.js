@@ -28,7 +28,7 @@ export default function Booking() {
         {loading ? (
         <Loading />
       ) : (
-        <div className='mt-10 md:ml-20 md:mr-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-16 md:gap-8 lg:gap-16'>
+        <div className='mt-10 md:mb-14 md:ml-20 md:mr-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-16 md:gap-8 lg:gap-16'>
               <Card/>
               {/* cards */}
               <Card/>
