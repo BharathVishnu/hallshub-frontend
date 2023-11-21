@@ -26,13 +26,13 @@ export default function Sidebar() {
 
     return(
         <div className='relative'>
-            <div className="md:absolute md:left-10 md:bottom-3 ">
+            <div className="absolute left-8 md:left-10 md:bottom-3 ">
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                 {open ? <CloseIcon /> : <MenuIcon className='text-white text-4xl' />}
                 </IconButton>
             </div>
             <Drawer anchor="left" open={open} onClose={toggleDrawer} >
-            <div className="flex flex-col h-screen w-96 " style={gradientStyle}>
+            <div className="flex flex-col h-screen w-screen md:w-96 " style={gradientStyle}>
             <div className="bg-[#5268DA] flex justify-between items-center p-3 pr-4 ">
                 <div></div>
                 <IconButton edge="end" color="inherit" aria-label="close" onClick={toggleDrawer}>
