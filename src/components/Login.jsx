@@ -42,7 +42,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex relative items-center justify-center mt-72 md:mt-80">
+    <div data-aos="fade-left"  className="flex relative items-center justify-center mt-72 md:mt-80">
       <div className="font-mont absolute right-0  rounded-l-3xl px-8 py-24 mt-8 md:px-72 shadow-2xl w-full md:w-[1321px] flex flex-col gap-2" style={gradientStyle}>
         {/* Username Input */}
         <div className="mb-4">
