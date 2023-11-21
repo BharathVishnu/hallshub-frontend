@@ -2,11 +2,13 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../pages/supabase';
+import { useAuth } from '@/components/AuthContext';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const { setAuthenticatedUser } = useAuth();
 
   const fetchDataFromSupabase = async () => {
     try {
@@ -21,7 +23,8 @@ const LoginForm = () => {
       }
 
       if (data.length === 1) {
-         router.push('/book');
+        setAuthenticatedUser(username);
+        router.push('/book'); 
       } else {
         window.alert("Invalid Credentials");
       }

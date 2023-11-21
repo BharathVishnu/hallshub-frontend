@@ -8,8 +8,6 @@ const myFont = localFont({
   });
 
 export default function Layout({children}) {
-
-
     const gradientStyle = {
         backgroundImage: 'linear-gradient(to bottom, #5268DA, #495CC3,#2F3349)',
       };

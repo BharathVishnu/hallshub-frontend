@@ -42,7 +42,7 @@ const Card = ({ userData }) => {
   }, [userData.startdate, userData.enddate]);
 
   return (
-    <div className="card text-white hover:text-black border-2 border-white hover:border-black relative overflow-hidden rounded-lg p-6 shadow-2xl transition duration-300 ease-in-out hover:opacity-100 transform hover:scale-105 hover:bg-white">
+    <div className="mx-auto md:mx-0 card text-white hover:text-black border-2 border-white hover:border-black relative overflow-hidden rounded-lg p-6 shadow-2xl transition duration-300 ease-in-out hover:opacity-100 transform hover:scale-105 hover:bg-white">
       <h2 className="text-2xl font-bold">{userData.eventname}</h2>
       <h3 className="text-2xl font-semibold mb-4">{userData.club}</h3>
       <h4 className="text-2xl font-bold mb-2">{userData.roomname}</h4>

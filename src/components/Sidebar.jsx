@@ -9,10 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Person2Icon from '@mui/icons-material/Person2';
+import { useAuth } from '@/components/AuthContext';
 
 export default function Sidebar() {
     const [open, setOpen] = useState(false);
-
+    const { username, logout } = useAuth();
     const toggleDrawer = () => {
       setOpen(!open);
     };
@@ -26,7 +27,7 @@ export default function Sidebar() {
 
     return(
         <div className='relative'>
-            <div className="absolute left-8 md:left-10 md:bottom-3 ">
+            <div className="absolute left-2 md:left-10 bottom-10 md:bottom-3 ">
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                 {open ? <CloseIcon /> : <MenuIcon className='text-white text-4xl' />}
                 </IconButton>
@@ -51,7 +52,11 @@ export default function Sidebar() {
                         className='text-white hover:text-[#2F3349]'
                     />
                 </Link>
-                <Link href="/" onClick={closeDrawer} className='mr-20 flex flex-row justify-between items-center gap-8'> 
+                <Link href="/"   onClick={() => {
+                                    logout();
+                                    closeDrawer();
+                                }} 
+                                    className='mr-20 flex flex-row justify-between items-center gap-8'> 
                 <ExitToAppIcon className='text-white text-4xl hover:text-[#2F3349]'/>
                 <ListItemText
                     primary={
