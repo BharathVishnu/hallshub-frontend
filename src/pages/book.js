@@ -23,7 +23,7 @@ export default function Booking() {
         window.alert('Please select a venue');
         return;
       }
-      // console.log(username);
+      console.log(username);
       // Insert the booking details into the database
       const { data, error } = await supabase
         .from('booking')
@@ -35,7 +35,7 @@ export default function Booking() {
             enddate: toDateTime,
             roomname: venue,
             username: username,
-            club:'GDSC',
+            club:club,
           }
         ]);
       console.log(data)
@@ -89,7 +89,8 @@ export default function Booking() {
         if (error) {
           console.error('Error fetching data from Supabase:', error.message);
         } else {
-          setUserData(data);
+          const userClub = data && data.length > 0 ? data[0].club : '';
+          setClub(userClub);
         }
       } catch (error) {
         console.error('Unexpected error:', error.message);

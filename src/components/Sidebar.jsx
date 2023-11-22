@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
@@ -11,9 +11,36 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Person2Icon from '@mui/icons-material/Person2';
 import { useAuth } from '@/components/AuthContext';
 
+
+
 export default function Sidebar() {
     const [open, setOpen] = useState(false);
     const { username, logout } = useAuth();
+    const [loading, setLoading] = useState(false)
+    const [club,setClub] = useState('')
+
+    useEffect(() => {
+        const fetchClubFromSupabase = async () => {
+          try {
+            
+            const { data, error } = await supabase
+              .from('user')
+              .select('club')
+              .eq('username',username);
+            if (error) {
+              window.alert('Error fetching data from Supabase:', error.message);
+            } else {
+                const userClub = data && data.length > 0 ? data[0].club : '';
+                setClub(userClub);
+            }
+          } catch (error) {
+            window.alert('Unexpected error:', error.message);
+          } finally {
+            setLoading(false); // Set loading to false whether fetching was successful or not
+          }
+        };
+        fetchClubFromSupabase();
+      }, []);
     const toggleDrawer = () => {
       setOpen(!open);
     };
@@ -41,17 +68,17 @@ export default function Sidebar() {
                 </IconButton>
             </div>
             <List className="mt-10 flex flex-col justify-center items-center gap-10 px-10 ">
-                <Link href="/" onClick={closeDrawer} className='mr-24 flex flex-row justify-between items-center gap-5 '>
+                <Link href="/" onClick={closeDrawer} className='flex flex-row justify-between items-center gap-5 '>
                     <Person2Icon className='text-4xl text-white hover:text-[#2F3349]'/>
-                    <ListItemText
-                        primary={
-                        <Typography variant="body1" style={{ fontSize: '28px',fontFamily:'var(--font-mont)'}}>
-                            Profile
-                        </Typography>
-                        }
-                        className='text-white hover:text-[#2F3349]'
-                    />
                 </Link>
+                <div className='mb-80 md:mb-96 flex flex-col gap-8'>
+                    <div className='opacity-[100%] bg-[#6B739D] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
+                        {username}
+                    </div>
+                    <div className='opacity-[100%] bg-[#6B739D] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
+                        {club}
+                    </div>
+                </div>
                 <Link href="/"   onClick={() => {
                                     logout();
                                     closeDrawer();
