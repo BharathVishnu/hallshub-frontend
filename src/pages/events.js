@@ -13,7 +13,8 @@ export default function Booking() {
     { section: 'Technical', category: 'Technical' },
     { section: 'Cultural', category: 'Cultural' },
     { section: 'Hackathon', category: 'Hackathon' },
-    { section: 'Workshop', category: 'Workshop' }
+    { section: 'Workshop', category: 'Workshop' },
+    { section: 'Sports', category: 'Sports' }
   ];
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);

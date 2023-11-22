@@ -133,11 +133,11 @@ export default function Booking() {
               onChange={(e) => setEventCategory(e.target.value)}
               className="mt-1 p-3 w-[220px]  md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             >
-              <option value="category1">Technical</option>
-              <option value="category2">Hackathon</option>
-              <option value="category3">Workshop</option>
-              <option value="category3">Cultural</option>
-              <option value="category3">Sports</option>
+              <option value="Technical">Technical</option>
+              <option value="Hackathon">Hackathon</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Sports">Sports</option>
             </select>
           </div>
 
