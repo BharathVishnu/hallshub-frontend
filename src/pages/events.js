@@ -17,7 +17,8 @@ export default function Booking() {
   ];
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const currentDate = new Date();
+  const utcDateString = currentDate.toISOString(); // This gives you a string in UTC format
   const [selectedSection, setSelectedSection] = useState('All');
 
   const filteredResources = selectedSection === 'All'
@@ -37,7 +38,9 @@ export default function Booking() {
       try {
         const { data, error } = await supabase
           .from('booking')
-          .select('*');
+          .select('*')
+          .gte('enddate', utcDateString);
+
         if (error) {
           console.error('Error fetching data from Supabase:', error.message);
         } else {

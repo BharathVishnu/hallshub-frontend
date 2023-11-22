@@ -11,7 +11,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Person2Icon from '@mui/icons-material/Person2';
 import { useAuth } from '@/components/AuthContext';
 import { supabase } from '../pages/supabase';
-
+import Image from "next/image"
+import profilepiclogo from "public/assets/profilepic.png"
 
 export default function Sidebar() {
     const [open, setOpen] = useState(false);
@@ -68,15 +69,15 @@ export default function Sidebar() {
                 <CloseIcon />
                 </IconButton>
             </div>
-            <List className="mt-10 flex flex-col justify-center items-center gap-10 px-10 ">
+            <List className="mt-10 flex flex-col justify-center items-center gap-5 px-10 ">
                 <Link href="/" onClick={closeDrawer} className='flex flex-row justify-between items-center gap-5 '>
-                    <Person2Icon className='text-4xl text-white hover:text-[#2F3349]'/>
+                    <div className='w-20 h-20'><Image src={profilepiclogo}/></div>
                 </Link>
                 <div className='mb-80 md:mb-96 flex flex-col gap-8'>
-                    <div className='opacity-[100%] bg-[#6B739D] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
+                    <div className='opacity-[100%] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
                         {username}
                     </div>
-                    <div className='opacity-[100%] bg-[#6B739D] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
+                    <div className='opacity-[100%] w-48 text-white text-2xl font-mont flex flex-row justify-center rounded-xl shadow-xl'>
                         {club}
                     </div>
                 </div>
@@ -84,8 +85,8 @@ export default function Sidebar() {
                                     logout();
                                     closeDrawer();
                                 }} 
-                                    className='mr-20 flex flex-row justify-between items-center gap-8'> 
-                <ExitToAppIcon className='text-white text-4xl hover:text-[#2F3349]'/>
+                                    className='mb-10 mr-20 flex flex-row items-center gap-8'> 
+                <ExitToAppIcon className='ml-14 text-white text-4xl hover:text-[#2F3349]'/>
                 <ListItemText
                     primary={
                     <Typography variant="body1" style={{ fontSize: '28px' , fontFamily:'var(--font-mont)'}}>
