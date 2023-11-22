@@ -14,6 +14,7 @@ export default function Booking() {
   const [fromDateTime, setFromDateTime] = useState('');
   const [toDateTime, setToDateTime] = useState('');
   const [venue, setVenue] = useState('');
+  const [club,setClub] =useState('');
   const { username } = useAuth();
 
   const handleBookEvent = async () => {
@@ -63,6 +64,7 @@ export default function Booking() {
   useEffect(() => {
     const fetchDataFromSupabase = async () => {
       try {
+        
         const { data, error } = await supabase
           .from('room')
           .select('roomname'); // Select only the 'roomname' column
@@ -77,15 +79,35 @@ export default function Booking() {
         setLoading(false); // Set loading to false whether fetching was successful or not
       }
     };
+    const fetchClubFromSupabase = async () => {
+      try {
+        
+        const { data, error } = await supabase
+          .from('user')
+          .select('club')
+          .eq('username',username); // Select only the 'roomname' column
+        if (error) {
+          console.error('Error fetching data from Supabase:', error.message);
+        } else {
+          setUserData(data);
+        }
+      } catch (error) {
+        console.error('Unexpected error:', error.message);
+      } finally {
+        setLoading(false); // Set loading to false whether fetching was successful or not
+      }
+    };
 
     fetchDataFromSupabase();
+    fetchClubFromSupabase();
   }, []);
+
 
     return (
     <main >  
         <Sidebar/>
         <Navbar/>
-        <div className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
+        <div data-aos="fade-right" className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
           {/* Event */}
           <div className="ml-5 mb-4">
             <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">

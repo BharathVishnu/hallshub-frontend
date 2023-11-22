@@ -27,7 +27,7 @@ export default function Sidebar() {
 
     return(
         <div className='relative'>
-            <div className="absolute left-2 md:left-10 bottom-10 md:bottom-3 ">
+            <div data-aos="left" className="absolute left-2 md:left-10 bottom-10 md:bottom-3 ">
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}>
                 {open ? <CloseIcon /> : <MenuIcon className='text-white text-4xl' />}
                 </IconButton>
