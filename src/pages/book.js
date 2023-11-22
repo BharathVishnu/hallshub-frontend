@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Link from 'next/link';
 import Sidebar from "@/components/Sidebar";
 import { supabase } from '../pages/supabase';
 import { useState, useEffect } from 'react';
@@ -125,17 +124,23 @@ export default function Booking() {
 
           {/* Event Category */}
           <div className="ml-5 mb-4">
-            <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
-              event category
+            <label htmlFor="category" className="block text-lg md:text-xl font-bold text-white">
+              Event Category
             </label>
-            <input
-              type="text"
+            <select
               id="category"
               value={eventCategory}
               onChange={(e) => setEventCategory(e.target.value)}
-              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
-            />
+              className="mt-1 p-3 w-[220px]  md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="category1">Technical</option>
+              <option value="category2">Hackathon</option>
+              <option value="category3">Workshop</option>
+              <option value="category3">Cultural</option>
+              <option value="category3">Sports</option>
+            </select>
           </div>
+
 
           {/* Expected Attendees */}
           <div className="ml-5 mb-4">

@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Person2Icon from '@mui/icons-material/Person2';
 import { useAuth } from '@/components/AuthContext';
-
+import { supabase } from '../pages/supabase';
 
 
 export default function Sidebar() {
@@ -34,13 +34,14 @@ export default function Sidebar() {
                 setClub(userClub);
             }
           } catch (error) {
-            window.alert('Unexpected error:', error.message);
+            console.log('Unexpected error:', error.message);
           } finally {
             setLoading(false); // Set loading to false whether fetching was successful or not
           }
         };
         fetchClubFromSupabase();
       }, []);
+
     const toggleDrawer = () => {
       setOpen(!open);
     };
