@@ -67,7 +67,7 @@ const Register = () => {
   };
 
   return (
-    <div data-aos="fade-left"  className="font-mont flex relative items-center justify-center mt-96 md:mt-80">
+    <div data-aos="fade-down"  className="font-mont flex relative items-center justify-center mt-96 md:mt-80">
       <div className="absolute right-1 bg-[#3D51BE] rounded-l-3xl px-6 py-12 md:px-96 shadow-2xl w-full md:w-[1321px] flex flex-col gap-2"  style={gradientStyle}>
         {/* Username Input */}
         <div className="mb-4 md:ml-[-56px]">
