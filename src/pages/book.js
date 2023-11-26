@@ -47,7 +47,7 @@ export default function Booking() {
         .from('occupancy')
         .upsert([
           {
-            roomName: venue,
+            roomname: venue,
             startdate: fromDateTime,
             enddate: toDateTime,
           },
