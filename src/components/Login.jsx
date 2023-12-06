@@ -34,6 +34,10 @@ const LoginForm = () => {
   };
 
   const handleLoginClick = () => {
+    if (!username || !password) {
+      window.alert("Please enter both username and password.");
+      return;
+    }
     fetchDataFromSupabase();
   };
 

@@ -25,6 +25,7 @@ export default function Layout({children}) {
     <>
         <Head>
             <title>Halls-Hub</title>
+            <link rel="icon" href="./assets/link.jpg" />
         </Head>
         <div className={`${myFont.variable} flex flex-col min-h-screen`} style={gradientStyle}>
             <Header/>

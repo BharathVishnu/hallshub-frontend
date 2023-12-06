@@ -1,10 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { supabase } from '../pages/supabase';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/components/AuthContext';
 
 export default function Booking() {
+  
+
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [eventName, setEventName] = useState('');
@@ -14,12 +16,13 @@ export default function Booking() {
   const [toDateTime, setToDateTime] = useState('');
   const [venue, setVenue] = useState('');
   const [club,setClub] =useState('');
+  const [availablevenues,setAvailableVenues] =useState([]);
   const { username } = useAuth();
 
   const handleBookEvent = async () => {
     try {
-      if (!venue) {
-        window.alert('Please select a venue');
+      if (!toDateTime || !fromDateTime || !expectedAttendees || !eventCategory || !eventName || !venue) {
+        window.alert("Please enter all details");
         return;
       }
       console.log(username);
@@ -55,15 +58,51 @@ export default function Booking() {
 
       // Handle successful booking, e.g., show a success message or redirect to a confirmation page
       window.alert('Event booked successfully');
+      setEventName('');
+      setEventCategory('');
+      setExpectedAttendees('');
+      setFromDateTime('');
+      setToDateTime('');
+      setVenue('');
     } catch (error) {
       window.alert('Error booking event. Please try again.');
       console.log(error);
     }
   };
   useEffect(() => {
+      // Fetch available venues based on capacity and availability
+  //     const fetchAvailableVenues = async () => {
+  //       try {
+  //         const occupiedRooms = await supabase
+  //           .from('occupancy')
+  //           .select('roomname')
+  //           .lte('enddate', fromDateTime)
+  //           .gte('startdate', toDateTime);
+  
+  //         if (occupiedRooms.error) {
+  //           throw occupiedRooms.error;
+  //         }
+  
+  //         const occupiedRoomNames = (occupiedRooms.data || []).map((room) => room.roomname);
+  
+  //         const { data, error } = await supabase
+  //           .from('room')
+  //           .select('roomname, capacity')
+  //           .not('roomname', 'in', occupiedRoomNames)
+  //           .gte('capacity', expectedAttendees);
+  
+  //         if (error) {
+  //           throw error;
+  //         }
+  
+  //         setAvailableVenues(data || []);
+  //       } catch (error) {
+  //         window.alert('Error fetching available venues');
+  //         setAvailableVenues([]);
+  //       }
+  //   }
     const fetchDataFromSupabase = async () => {
       try {
-        
         const { data, error } = await supabase
           .from('room')
           .select('roomname'); // Select only the 'roomname' column
@@ -80,7 +119,6 @@ export default function Booking() {
     };
     const fetchClubFromSupabase = async () => {
       try {
-        
         const { data, error } = await supabase
           .from('user')
           .select('club')
@@ -102,12 +140,20 @@ export default function Booking() {
     fetchClubFromSupabase();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+    try {
+      await handleBookEvent();
+    } catch (error) {
+      console.error('Error handling form submission:', error);
+    }
+  };
 
     return (
     <main >  
         <Sidebar/>
         <Navbar/>
-        <div data-aos="fade-right" className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
+        <form onSubmit={handleSubmit} data-aos="fade-right" className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
           {/* Event */}
           <div className="ml-5 mb-4">
             <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
@@ -133,6 +179,7 @@ export default function Booking() {
               onChange={(e) => setEventCategory(e.target.value)}
               className="mt-1 p-3 w-[220px]  md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             >
+              <option value=""></option>
               <option value="Technical">Technical</option>
               <option value="Hackathon">Hackathon</option>
               <option value="Workshop">Workshop</option>
@@ -197,6 +244,7 @@ export default function Booking() {
                 onChange={(e) => setVenue(e.target.value)}
                 className="mt-1 p-3 w-[220px] md:w-[900px] opacity-[60%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               >
+                  <option value=""></option>
                   {userData.map((room, index) => (
                     <option key={index} value={room.roomname}>
                       {room.roomname}
@@ -206,10 +254,10 @@ export default function Booking() {
             </div>
 
           {/* Book Button */}
-          <div onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+          <button onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
             Book
-          </div>
-    </div>
+          </button>
+    </form>
     </main>
   )
 }
