@@ -16,6 +16,10 @@ const Register = () => {
     backgroundImage: 'linear-gradient(to bottom,#3D51BE,#3E4B91,#394378)',
   };
   const handleRegister = async () => {
+    if (!username || !password ||!club ||!confirmPassword) {
+      window.alert("Please enter all details.");
+      return;
+    }
     // Check if password and confirm password match
     if (password !== confirmPassword) {
       window.alert('Password and Confirm Password must match');
@@ -122,9 +126,14 @@ const Register = () => {
         </div>
 
         {/* Login Button */}
-        <div onClick={handleRegister} className="mt-5 md:ml-32 mx-auto md:w-[272px] text-md text-center opacity-[80%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
-          Register
+        <div
+          onClick={handleRegister}
+          className="mt-5 md:ml-32 mx-auto md:w-[272px] text-md text-center opacity-[80%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500 relative overflow-hidden"
+        >
+          <span className="absolute inset-0 bg-gradient-to-r from-[#6B739D] to-white opacity-20 animate-pulse"></span>
+          <span className="relative z-10">Register</span>
         </div>
+
 
         {/* Register Link */}
         <div className='opacity-[80%] mt-2 text-sm md:text-md ml-10 md:ml-40'>

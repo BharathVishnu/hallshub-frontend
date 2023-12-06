@@ -61,8 +61,8 @@ export default function Sidebar() {
                 {open ? <CloseIcon /> : <MenuIcon className='text-white text-4xl' />}
                 </IconButton>
             </div>
-            <Drawer anchor="left" open={open} onClose={toggleDrawer} >
-            <div className="flex flex-col h-screen w-screen md:w-96 " style={gradientStyle}>
+            <Drawer anchor="left" open={open} className="w-screen h-screen" onClose={toggleDrawer} >
+            <div className="flex w-screen h-screen md:w-96 flex-col " style={gradientStyle}>
             <div className="bg-[#5268DA] flex justify-between items-center p-3 pr-4 ">
                 <div></div>
                 <IconButton edge="end" color="inherit" aria-label="close" onClick={toggleDrawer}>

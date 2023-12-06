@@ -80,11 +80,13 @@ const LoginForm = () => {
 
         {/* Login Button */}
         <div
-          className="mt-5 md:ml-50 mx-auto md:w-[272px] opacity-[90%] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500"
+          className="mt-5 md:ml-50 mx-auto md:w-[272px] opacity-[90%] text-md text-center bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500 relative overflow-hidden"
           onClick={handleLoginClick}
         >
-          Login
+          <span className="absolute inset-0 bg-gradient-to-r from-white to-white opacity-20 animate-pulse"></span>
+          <span className="relative z-10">Login</span>
         </div>
+
 
         {/* Register Link */}
         <div className='mt-2 text-sm md:text-md ml-10 md:ml-64'>

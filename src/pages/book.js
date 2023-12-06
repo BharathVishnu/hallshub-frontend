@@ -11,13 +11,18 @@ export default function Booking() {
   const [loading, setLoading] = useState(true);
   const [eventName, setEventName] = useState('');
   const [eventCategory, setEventCategory] = useState('');
-  const [expectedAttendees, setExpectedAttendees] = useState('');
+  const [expectedAttendees, setExpectedAttendees] = useState(0);
   const [fromDateTime, setFromDateTime] = useState('');
   const [toDateTime, setToDateTime] = useState('');
   const [venue, setVenue] = useState('');
   const [club,setClub] =useState('');
-  const [availablevenues,setAvailableVenues] =useState([]);
   const { username } = useAuth();
+  const [venuesLoaded, setVenuesLoaded] = useState(false);
+  const [availableVenues, setAvailableVenues] = useState([]);
+  const [occupiedRooms, setOccupiedRooms] = useState([]);
+  const [allvenues, setAllVenues] = useState([]);
+  
+  
 
   const handleBookEvent = async () => {
     try {
@@ -25,7 +30,40 @@ export default function Booking() {
         window.alert("Please enter all details");
         return;
       }
-      console.log(username);
+  
+      // Check if there is an event at the same time
+      const { data: conflictingEvents, error: conflictingEventsError } = await supabase
+        .from('booking')
+        .select()
+        .eq('roomname', venue)
+        .gte('startdate', fromDateTime)
+        .lte('enddate', toDateTime);
+  
+      if (conflictingEventsError) {
+        throw conflictingEventsError;
+      }
+  
+      if (conflictingEvents.length > 0) {
+        window.alert('Another event is already booked for the selected time at this venue. Please choose a different time.');
+        return;
+      }
+
+      const { data: venueDetails, error: venueDetailsError } = await supabase
+      .from('room')
+      .select('capacity')
+      .eq('roomname', venue);
+    
+    if (venueDetailsError) {
+      throw venueDetailsError;
+    }
+    
+    const venueCapacity = venueDetails[0]?.capacity;
+    
+    if (venueCapacity < expectedAttendees) {
+      window.alert('Expected attendees exceed the capacity of the selected venue.');
+      return;
+    }
+    
       // Insert the booking details into the database
       const { data, error } = await supabase
         .from('booking')
@@ -37,14 +75,16 @@ export default function Booking() {
             enddate: toDateTime,
             roomname: venue,
             username: username,
-            club:club,
+            club: club,
           }
         ]);
-      console.log(data)
+  
+      console.log(data);
+  
       if (error) {
         throw error;
       }
-
+  
       // Update the Occupancy table
       await supabase
         .from('occupancy')
@@ -55,7 +95,7 @@ export default function Booking() {
             enddate: toDateTime,
           },
         ]);
-
+  
       // Handle successful booking, e.g., show a success message or redirect to a confirmation page
       window.alert('Event booked successfully');
       setEventName('');
@@ -69,38 +109,9 @@ export default function Booking() {
       console.log(error);
     }
   };
+  
   useEffect(() => {
-      // Fetch available venues based on capacity and availability
-  //     const fetchAvailableVenues = async () => {
-  //       try {
-  //         const occupiedRooms = await supabase
-  //           .from('occupancy')
-  //           .select('roomname')
-  //           .lte('enddate', fromDateTime)
-  //           .gte('startdate', toDateTime);
-  
-  //         if (occupiedRooms.error) {
-  //           throw occupiedRooms.error;
-  //         }
-  
-  //         const occupiedRoomNames = (occupiedRooms.data || []).map((room) => room.roomname);
-  
-  //         const { data, error } = await supabase
-  //           .from('room')
-  //           .select('roomname, capacity')
-  //           .not('roomname', 'in', occupiedRoomNames)
-  //           .gte('capacity', expectedAttendees);
-  
-  //         if (error) {
-  //           throw error;
-  //         }
-  
-  //         setAvailableVenues(data || []);
-  //       } catch (error) {
-  //         window.alert('Error fetching available venues');
-  //         setAvailableVenues([]);
-  //       }
-  //   }
+      
     const fetchDataFromSupabase = async () => {
       try {
         const { data, error } = await supabase
@@ -135,7 +146,25 @@ export default function Booking() {
         setLoading(false); // Set loading to false whether fetching was successful or not
       }
     };
+    const fetchVenuesFromSupabase = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('room')
+          .select('roomname') // Select only the 'roomname' column
+        if (error) {
+          console.error('Error fetching data from Supabase:', error.message);
+        } else {
+          const all = data ;
+          setAllVenues(all);
+        }
+      } catch (error) {
+        console.error('Unexpected error:', error.message);
+      } finally {
+        setLoading(false); // Set loading to false whether fetching was successful or not
+      }
+    };
 
+    fetchVenuesFromSupabase();
     fetchDataFromSupabase();
     fetchClubFromSupabase();
   }, []);
@@ -148,6 +177,7 @@ export default function Booking() {
       console.error('Error handling form submission:', error);
     }
   };
+
 
     return (
     <main >  
@@ -195,7 +225,7 @@ export default function Booking() {
               expected attendees
             </label>
             <input
-              type="text"
+              type="integer"
               id="attendees"
               value={expectedAttendees}
               onChange={(e) => setExpectedAttendees(e.target.value)}
@@ -242,22 +272,106 @@ export default function Booking() {
                 id="venue"
                 value={venue}
                 onChange={(e) => setVenue(e.target.value)}
+                // onClick={handleDropdownClick}
                 className="mt-1 p-3 md:p-4 w-[270px] md:w-[700px] lg:w-[900px]  opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               >
                   <option value=""></option>
-                  {userData.map((room, index) => (
-                    <option key={index} value={room.roomname}>
-                      {room.roomname}
-                    </option>
-                  ))} 
+                  {allvenues.map((room, index) => {
+      const isOccupied = occupiedRooms.includes(room.roomname);
+      return !isOccupied ? (
+        <option key={index} value={room.roomname}>
+          {room.roomname}
+        </option>
+                  ) : null;
+                })} 
               </select>
             </div>
 
           {/* Book Button */}
-          <div onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:ml-32 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
-            Book
-          </div>
+          <button onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:ml-32 md:w-[170px] text-md text-center bg-[#6B739D] text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black hover:bg-white hover:text-black transition duration-500 relative overflow-hidden">
+            <span className="absolute inset-0 bg-gradient-to-r from-white to-white opacity-20 animate-pulse"></span>
+            <span className="relative z-10">Book</span>
+          </button>
+
     </form>
     </main>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const fetchAvailableVenues = async () => {
+  //   try {
+  //     console.log('Fetching available venues...');
+  
+  //     const { data: occupiedRooms, error: occupiedRoomsError } = await supabase
+  //       .from('occupancy')
+  //       .select('roomname')
+  //       .gte('startdate', fromDateTime)
+  //       .lte('enddate', toDateTime);
+  
+  //     console.log('Occupied Rooms:', occupiedRooms);
+  
+  //     if (occupiedRoomsError) {
+  //       throw occupiedRoomsError;
+  //     }
+  
+  //     const occupiedRoomNames = (occupiedRooms || []).map((room) => room.roomname);
+  
+  //     let availableRoomsQuery = supabase.from('room').select('roomname, capacity');
+  
+  //     // Check if occupiedRoomNames is not empty, then exclude those rooms
+  //     if (occupiedRoomNames.length > 0) {
+  //       availableRoomsQuery = availableRoomsQuery.not('roomname', 'in', occupiedRoomNames);
+  //     }
+  
+  //     // Add a filter for capacity
+  //     availableRoomsQuery = availableRoomsQuery.gte('capacity', expectedAttendees);
+  
+  //     const { data: availableRooms, error: availableRoomsError } = await availableRoomsQuery;
+  
+  //     console.log('Available Rooms:', availableRooms);
+  
+  //     if (availableRoomsError) {
+  //       windows.alert(availableRoomsError);
+  //     }
+  
+  //     setAvailableVenues(availableRooms || []);
+  //     setOccupiedRooms(occupiedRoomNames);
+  //     setVenuesLoaded(true);
+  //   } catch (error) {
+  //     console.error('Error fetching available venues:', error);
+  //     window.alert('Error fetching available venues');
+  //     setAvailableVenues([]);
+  //     setOccupiedRooms([]);
+  //   }
+  // };
+  
+
+
+
+    // const handleDropdownClick = () => {
+  //   if (!venuesLoaded) {
+  //     fetchAvailableVenues();
+  //   }
+  // };
