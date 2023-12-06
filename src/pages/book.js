@@ -153,9 +153,9 @@ export default function Booking() {
     <main >  
         <Sidebar/>
         <Navbar/>
-        <form onSubmit={handleSubmit} data-aos="fade-right" className="font-mont relative rounded-l-3xl w-full md:w-[1321px] flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
+        <form onSubmit={handleSubmit} data-aos="fade-right" className="font-mont relative rounded-l-3xl w-screen md:w-full flex flex-col items-center justify-center mx-auto mt-10 gap-2 mb-10 md:mb-0">
           {/* Event */}
-          <div className="ml-5 mb-4">
+          <div className="ml-5 mb-4 ">
             <label htmlFor="username" className="block text-lg md:text-xl font-bold text-white">
               event name 
             </label>
@@ -164,7 +164,7 @@ export default function Booking() {
               id="eventname"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
-              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-3 md:p-4 w-[270px] md:w-[700px] lg:w-[900px] md:p-4 opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
 
@@ -177,7 +177,7 @@ export default function Booking() {
               id="category"
               value={eventCategory}
               onChange={(e) => setEventCategory(e.target.value)}
-              className="mt-1 p-3 w-[220px]  md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-3 md:p-4 w-[270px] md:w-[700px] lg:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             >
               <option value=""></option>
               <option value="Technical">Technical</option>
@@ -199,11 +199,11 @@ export default function Booking() {
               id="attendees"
               value={expectedAttendees}
               onChange={(e) => setExpectedAttendees(e.target.value)}
-              className="mt-1 p-2 w-full md:w-[900px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-1 p-3 md:p-4 w-[270px] md:w-[700px] lg:w-[900px]  opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
           
-          <div className="flex flex-row justify-between items-center ml-3 md:ml-0 gap-5 md:gap-36">
+          <div className="flex flex-row justify-between items-center ml-3 md:ml-0 gap-5 md:gap-2">
             {/* From */}
             <div className="md:ml-5 mb-4">
               <label htmlFor="password" className="block text-lg md:text-xl font-bold text-white">
@@ -214,7 +214,7 @@ export default function Booking() {
                 id="from"
                 value={fromDateTime}
                 onChange={(e) => setFromDateTime(e.target.value)}
-                className="mt-1 p-2 w-[100px] md:w-[350px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-3 md:p-4  w-[120px] md:w-[320px] lg:w-[400px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>
             {/* To */}
@@ -227,7 +227,7 @@ export default function Booking() {
                 id="to"
                 value={toDateTime}
                 onChange={(e) => setToDateTime(e.target.value)}
-                className="mt-1 p-2 w-[100px] md:w-[350px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-3 md:p-4 w-[120px] md:w-[350px] lg:w-[450px] opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>
           </div>
@@ -242,7 +242,7 @@ export default function Booking() {
                 id="venue"
                 value={venue}
                 onChange={(e) => setVenue(e.target.value)}
-                className="mt-1 p-3 w-[220px] md:w-[900px] opacity-[60%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
+                className="mt-1 p-3 md:p-4 w-[270px] md:w-[700px] lg:w-[900px]  opacity-[80%] bg-[#6B739D] border-blue-500 rounded-2xl focus:outline-none focus:ring focus:border-blue-300"
               >
                   <option value=""></option>
                   {userData.map((room, index) => (
@@ -254,9 +254,9 @@ export default function Booking() {
             </div>
 
           {/* Book Button */}
-          <button onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
+          <div onClick={handleBookEvent} className="md:absolute md:left-48 md:top-[100%] mt-5 ml-7 md:ml-32 md:w-[170px] text-md text-center opacity-[90%] bg-[#6B739D] hover:text-black hover:font-bold hover:bg-white text-white rounded-full py-3 px-8 shadow-md hover:shadow-2xl hover:shadow-black transition duration-500">
             Book
-          </button>
+          </div>
     </form>
     </main>
   )
